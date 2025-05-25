@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] private MenuLevelBust _menuLevelBust;
+
     [SerializeField] private int indexLevelScene;
     [SerializeField] private int indexInfiniteScene;
 
@@ -15,7 +17,7 @@ public class MainMenu : MonoBehaviour
 
     public void ActiveLevelScene()
     { 
-        SetActiveScene(indexLevelScene);
+        SetActiveScene(_menuLevelBust.CurrentLevel);
     }
 
     public void ActiveInfiniteScene()

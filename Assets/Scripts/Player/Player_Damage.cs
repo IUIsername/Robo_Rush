@@ -34,6 +34,13 @@ public class Player_Damage : MonoBehaviour, IPlayerDamage
 
     public int GetDamage() => _damage;
 
+    public void AddDamage(int amount)
+    { 
+        _damage += amount;
+        UpdateUI();
+        SaveDamage();
+    }
+
 
 
 }

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class InfinitePlatformSpawner : PlatformSpawner
 {
+    [SerializeField] private int _maxCountToSpawnBustPlatform;
+    [SerializeField] private Platform _bustPlatform;
+    private int _countToSpawnBustPlatform;
+
     private Transform _playerTransform;
     private List<GameObject> _activePlatforms = new List<GameObject>();
     protected override void Start()
@@ -16,7 +20,14 @@ public class InfinitePlatformSpawner : PlatformSpawner
     {
         if (_playerTransform.position.z > _spawnerDirection - (maxPlatformCount * platformLength))
         {
+            if (_countToSpawnBustPlatform >= _maxCountToSpawnBustPlatform)
+            {
+                SpawnPlatform(_bustPlatform);
+                _countToSpawnBustPlatform = 0;
+                return;
+            }
             SpawnPlatform(GetRandomPlatform());
+            _countToSpawnBustPlatform++;
             RemoveActivePlatforms();
         }
     }
